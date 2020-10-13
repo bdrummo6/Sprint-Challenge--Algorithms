@@ -51,8 +51,7 @@ class SortingRobot:
 
     def swap_item(self):
         """
-        The robot swaps its currently held item with the list item in front
-        of it.
+        The robot swaps its currently held item with the list item in front of it.
         This will increment the time counter by 1.
         """
         self._time += 1
@@ -106,20 +105,20 @@ class SortingRobot:
             while self.can_move_left():
                 self.move_left()
 
-            for i in range(len(self._list)-1):
+            for item in range(len(self._list) - 1):
                 self.swap_item()
                 self.move_right()
                 # checks if the held item is greater than the one in front of the robot
                 if self.compare_item() == 1:
-                    self.swap_item()
-                    self.move_left()
-                    self.swap_item()
-                    self.move_right()
+                    self.swap_item()  # swaps the robot's current item with the item ahead of it in the list
+                    self.move_left()  # moves left if possible
+                    self.swap_item()  # swaps the robot's current item with the item ahead of it in the list
+                    self.move_right()  # moves right if possible
                     self.set_light_off()  # The light is set to off, so the loop starts over
-                else:
-                    self.move_left()
-                    self.swap_item()
-                    self.move_right()
+                else:  # if the item held is less than, or equal to the item ahead of it, or either item is none
+                    self.move_left()  # moves left if possible
+                    self.swap_item()  # swaps item ahead of it
+                    self.move_right()  # moves right if possible
 
         return self._list  # return the sorted list
 
